@@ -1,0 +1,1 @@
+sqlc generate && go build -o gator && chmod +x gator && ./gator $@
