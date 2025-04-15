@@ -1,0 +1,22 @@
+# .golangci-all.yml
+run:
+  # Give it potentially more time, as running all linters can be slow
+  timeout: 10m
+  # Decide if you want to lint test files too
+  tests: true
+
+linters:
+  # This is the key setting!
+  enable-all: true
+
+  # You MIGHT need to explicitly disable certain linters here if
+  # 'enable-all' includes deprecated ones or ones that conflict
+  # or are excessively noisy for your project in a full run.
+  disable:
+    - tenv
+
+issues:
+  # You might have different exclusion rules for a full run
+  # compared to your day-to-day linting.
+  # max-issues-per-linter: 0
+  # max-same-issues: 0

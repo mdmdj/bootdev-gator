@@ -1,0 +1,48 @@
+run:
+  # Timeout for analysis, e.g. 5 minutes
+  timeout: 5m
+  # Run linters on tests too
+  tests: true
+
+linters-settings:
+  govet:
+    # Enable all analyzers including 'shadow'
+    enable-all: true
+    # Or specifically enable shadow if you don't want all:
+    # enable:
+    #   - shadow
+  errcheck:
+    # Check for unchecked errors in type assertions and blank assignments
+    check-type-assertions: true
+    check-blank: true
+
+linters:
+  # Disable all linters by default and explicitly enable specific ones
+  disable-all: true
+  enable:
+    # Core Go toolchain checks
+    - govet          # Runs go vet checks (including shadow if configured above)
+    - errcheck       # Checks for unchecked errors
+    - staticcheck    # Comprehensive static analysis (includes shadowing checks)
+    - unused         # Checks for unused code
+    - typecheck      # Ensures code type-checks (essential base)
+
+    # Add other linters you find useful over time
+    - gofmt         # Checks if code is formatted with gofmt
+    # - goimports     # Checks imports and formatting
+    # - revive        # More configurable replacement for golint
+    - ineffassign   # Detects ineffective assignments
+
+issues:
+  # Exclude specific issues or files if needed
+  exclude-rules:
+    # Example: Exclude a specific error message in a specific path
+    # - path: _test\.go
+    #   text: "error return value not checked"
+
+# Output configuration (optional, defaults are usually fine)
+output:
+  formats:
+    - format: colored-line-number
+  print-issued-lines: true
+  print-linter-name: true
