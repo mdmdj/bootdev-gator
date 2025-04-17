@@ -4,7 +4,6 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/google/uuid"
 	"github.com/mdmdj/bootdev-gator/internal/database"
 )
 
@@ -32,7 +31,6 @@ func handlerAddFeed(s *state, cmd command) error {
 	feedName := cmd.Args[0]
 	url := cmd.Args[1]
 	newFeed, err := s.db.CreateFeed(context.Background(), database.CreateFeedParams{
-		ID:     uuid.New(),
 		Name:   feedName,
 		Url:    url,
 		UserID: dbUser.ID,
